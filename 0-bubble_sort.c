@@ -1,4 +1,4 @@
-#include "deck.h"
+#include "sort.h"
 bool isSorted(int *array, size_t size);
 void bubble_sort(int *array, size_t size);
 /**
@@ -65,8 +65,8 @@ void bubble_sort(int *array, size_t size)
                 array[z + 1] = temp;
                 swapped = true;
 		
-		printf("After swap %zu-%zu: ", z, z + 1);
-                for (k = 0; k < size; k++)
+                printf("After swap %lu-%lu: ", (unsigned long)z, (unsigned long)(z + 1));
+		for (k = 0; k < size; k++)
                 {
                     printf("%d ", array[k]);
                 }
