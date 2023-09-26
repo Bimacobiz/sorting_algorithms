@@ -11,6 +11,7 @@ void bubble_sort(int *array, size_t size);
 bool isSorted(int *array, size_t size)
 {
 	size_t p;
+
 	if (size <= 1)
 	{
 		return (true);
@@ -40,12 +41,12 @@ void bubble_sort(int *array, size_t size)
 	size_t z;
 	size_t k;
 	int temp;
-    	bool swapped;
+	bool swapped;
 
-	if (size == 0) 
+	if (size == 0)
 	{
-        printf("The array is empty.\n");
-        return;
+		printf("The array is empty.\n");
+		return;
 	}
 	if (isSorted(array, size))
 	{
@@ -54,31 +55,31 @@ void bubble_sort(int *array, size_t size)
 	}
 	for (s = 0; s < size - 1; s++)
 	{
-        swapped = false;
+		swapped = false;
 
-        for (z = 0; z < size - s - 1; z++)
-        {
-            if (array[z] > array[z + 1])
-            {
-                temp = array[z];
-                array[z] = array[z + 1];
-                array[z + 1] = temp;
-                swapped = true;
-		
-                printf("%lu-%lu: ", (unsigned long)z, (unsigned long)(z + 1));
-		for (k = 0; k < size; k++)
-                {
-                    printf("%d ", array[k]);
-                }
-                printf("\n");
-            }
-        }
+		for (z = 0; z < size - s - 1; z++)
+		{
+			if (array[z] > array[z + 1])
+			{
+				temp = array[z];
+				array[z] = array[z + 1];
+				array[z + 1] = temp;
+				swapped = true;
 
-        if (!swapped)
-        {
-            break;
-        }
-    }
+				printf("%lu-%lu: ", (unsigned long)z, (unsigned long)(z + 1));
+				for (k = 0; k < size; k++)
+				{
+					printf("%d ", array[k]);
+				}
+				printf("\n");
+			}
+		}
 
-    printf("Array sorted successfully.\n");
+		if (!swapped)
+		{
+			break;
+		}
+	}
+
+	printf("Array sorted successfully.\n");
 }
