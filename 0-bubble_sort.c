@@ -65,19 +65,17 @@ void bubble_sort(int *array, size_t size)
 				array[z] = array[z + 1];
 				array[z + 1] = temp;
 				swapped = true;
-
-				printf("%lu-%lu: ", (unsigned long)z, (unsigned long)(z + 1));
-				for (k = 0; k < size; k++)
-				{
-					printf("%d ", array[k]);
-				}
-				printf("\n");
 			}
 		}
 
-		if (!swapped)
+		if (swapped)
 		{
-			break;
+			printf("%d", array[0]);
+			for (k = 1; k < size; k++)
+			{
+				printf(", %d", array[k]);
+			}
+			printf("\n");
 		}
 	}
 
