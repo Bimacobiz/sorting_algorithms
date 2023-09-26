@@ -37,47 +37,31 @@ bool isSorted(int *array, size_t size)
  */
 void bubble_sort(int *array, size_t size)
 {
-	size_t s;
-	size_t z;
-	size_t k;
+	size_t i, j;
 	int temp;
 	bool swapped;
 
-	if (size == 0)
-	{
-		printf("The array is empty.\n");
+	if (size < 2 || array == NULL)
 		return;
-	}
-	if (isSorted(array, size))
-	{
-		printf("Array Already Sorted.\n");
-		return;
-	}
-	for (s = 0; s < size - 1; s++)
+
+	for (i = 0; i < size - 1; i++)
 	{
 		swapped = false;
 
-		for (z = 0; z < size - s - 1; z++)
+		for (j = 0; j < size - i - 1; j++)
 		{
-			if (array[z] > array[z + 1])
+			if (array[j] > array[j + 1])
 			{
-				temp = array[z];
-				array[z] = array[z + 1];
-				array[z + 1] = temp;
+				temp = array[j];
+				array[j] = array[j + 1];
+				array[j + 1] = temp;
 				swapped = true;
 			}
 		}
 
-		if (swapped)
-		{
-			printf("%d", array[0]);
-			for (k = 1; k < size; k++)
-			{
-				printf(", %d", array[k]);
-			}
-			printf("\n");
-		}
-	}
+		print_array(array, size);
 
-	printf("Array sorted successfully.\n");
+		if (!swapped)
+			break;
+	}
 }
