@@ -1,9 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "sort.h"
 
-void swap_integers(int *m, int *n);
-int lomuto_partition(int *array, size_t size, int sideA, int sideB);
-void lomuto_sort(int *array, size_t size, int sideA, int sideB);
-void quick_sort(int *array, size_t size);
 /**
  * swap_integers - swaps two integers in a given array
  * @m: pointer to the first integer that should be swapped
@@ -19,68 +17,65 @@ void swap_integers(int *m, int *n)
 }
 
 /**
- * lomuto_partition - uses the lomuto partition scheme to
+ * lomuto_partition - uses the Lomuto partition scheme to
  * order a subset of integers
- * @array: the array of intergers that should be sorted
- * @size: the size of the arry that should be ordered
- * @sideA: the starting index of the subset that should be
- * ordered
- * @sideB: the ending index of the the subset that should
- * be ordered
+ * @array: the array of integers that should be sorted
+ * @size: the size of the array that should be ordered
+ * @low: the starting index of the subset that should be ordered
+ * @high: the ending index of the subset that should be ordered
  */
-int lomuto_partition(int *array, size_t size, int sideA, int sideB)
+int lomuto_partition(int *array, size_t size, int low, int high)
 {
-	int *pivot, low, high;
+	int *pivot;
+	int i;
 
-	pivot = array + sideB;
-	for (low = high = sideA; low < sideB; low++)
+	pivot = array + high;
+	for (i = low; i < high; i++)
 	{
-		if (array[low] < *pivot)
+		if (array[i] < *pivot)
 		{
-			if (low < high)
+			if (i != low)
 			{
-				swap_integers(array + low, array + high);
+				swap_integers(array + i, array + low);
 				print_array(array, size);
 			}
-			high++;
+			low++;
 		}
 	}
 
-	if (array[high] > *pivot)
+	if (array[low] > *pivot)
 	{
-		swap_integers(array + high, pivot);
+		swap_integers(array + low, pivot);
 		print_array(array, size);
 	}
 
-	return (high);
+	return (low);
 }
 
 /**
- * lomuto_sort - uses the lomuto partition scheme to
+ * lomuto_sort - uses the Lomuto partition scheme to
  * order a subset of integers
- * @array: the array of intergers that should be sorted
- * @size: the size of the arry that should be ordered
- * @sideA: the starting index of the subset that should be
- * ordered
- * @sideB: the ending index of the the subset that should
- * be ordered
+ * @array: the array of integers that should be sorted
+ * @size: the size of the array that should be ordered
+ * @low: the starting index of the subset that should be ordered
+ * @high: the ending index of the subset that should be ordered
  */
-void lomuto_sort(int *array, size_t size, int sideA, int sideB)
+void lomuto_sort(int *array, size_t size, int low, int high)
 {
 	int part;
 
-	if (sideB - sideA > 0)
+	if (high - low > 0)
 	{
-		part = lomuto_partition(array, size, sideA, sideB);
-		lomuto_sort(array, size, sideA, part - 1);
-		lomuto_sort(array, size, part + 1, sideB);
+		part = lomuto_partition(array, size, low, high);
+		lomuto_sort(array, size, low, part - 1);
+		lomuto_sort(array, size, part + 1, high);
 	}
 }
 
 /**
  * quick_sort - uses the quick sort algorithm to sort integers
- * @array: the array of intergers that should be sorted
- * @size: the size of the arry that should be ordered
+ * @array: the array of integers that should be sorted
+ * @size: the size of the array that should be ordered
  */
 void quick_sort(int *array, size_t size)
 {
