@@ -23,6 +23,7 @@ void swap_integers(int *m, int *n)
  * @size: the size of the array that should be ordered
  * @low: the starting index of the subset that should be ordered
  * @high: the ending index of the subset that should be ordered
+ * Return: Subset
  */
 int lomuto_partition(int *array, size_t size, int low, int high)
 {
